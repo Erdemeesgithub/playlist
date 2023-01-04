@@ -9,7 +9,8 @@ const playlistSchema = new Schema({
     type: String,
     default: "",
   },
-  creator: {
+  user: {
+    type: String,
     type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
@@ -18,14 +19,16 @@ const playlistSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  isPrivate: {
-    type: Boolean,
-    default: false,
-  },
-  songs: {
-    type: Schema.Types.ObjectId,
-    ref: "Song",
-  },
+  // isPrivate: {
+  //   type: Boolean,
+  //   default: false,
+  // },
+  songs: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Song",
+    },
+  ],
 });
 
 const Playlist = model("Playlist", playlistSchema);
