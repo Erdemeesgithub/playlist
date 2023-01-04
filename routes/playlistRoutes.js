@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
    .get("/playlists", getPlaylists)
+   .get("./playlist/:id", getPlaylist)
    .post("/playlists", createPlaylist)
    .put("/playlist/:id", updatePlaylist)
    .delete("/playlist/:id", deletePlaylist);
