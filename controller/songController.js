@@ -5,7 +5,7 @@ exports.createSong = async (req, res) => {
   const result = await new Song(body).save();
   res.send(result);
 };
-exports.getSong = async (req, res) => {
+exports.getSongs = async (req, res) => {
   const playlistId = req.query.playlistId;
 
   if (playlistId) {
@@ -15,6 +15,10 @@ exports.getSong = async (req, res) => {
   const result = await Song.find({});
   res.send(result);
 };
+exports.getSong = async (req,res) => {
+  const result = await Song.findById(req.params.id)
+  res.send(result);
+}
 exports.deleteSong = async (req, res) => {
   console.log(req.params.id);
   const id = req.params.id;
