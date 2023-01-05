@@ -15,10 +15,10 @@ exports.getSongs = async (req, res) => {
   const result = await Song.find({});
   res.send(result);
 };
-exports.getSong = async (req,res) => {
-  const result = await Song.findById(req.params.id)
+exports.getSong = async (req, res) => {
+  const result = await Song.findById(req.params.id).populate("artist");
   res.send(result);
-}
+};
 exports.deleteSong = async (req, res) => {
   console.log(req.params.id);
   const id = req.params.id;
@@ -27,4 +27,19 @@ exports.deleteSong = async (req, res) => {
 
   await Song.deleteOne(result);
   res.send("deleted");
+};
+
+exports.addArtistToSong = async (req, res) => {
+  const songId = req.params.id;
+  const artistId = req.body.artistId;
+
+  try {
+    await Song.findByIdAndUpdate(songId, {
+      $push: { artist: artistId },
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(400).send({ message: error.message });
+    }
+  }
 };
