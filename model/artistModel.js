@@ -15,4 +15,6 @@ const artistSchema = new Schema({
     },
 })
 
-const Artist = model()
+const Artist = model("Artist", artistSchema)
+
+module.exports = Artist
