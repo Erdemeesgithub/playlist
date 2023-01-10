@@ -13,6 +13,10 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
+    userId: {
+        type: String,
+        required: true
+    }
 })
 
 const User = model("User", userSchema)
