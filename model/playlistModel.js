@@ -12,7 +12,7 @@ const playlistSchema = new Schema({
   user: {
     type: String,
     type: Schema.Types.ObjectId,
-    // required: true,
+    required: true,
     ref: "User",
   },
   createdAt: {
