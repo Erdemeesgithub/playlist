@@ -14,7 +14,7 @@ const userSchema = new Schema({
         default: Date.now(),
     },
     userId: {
-        type: String,
+        type: Schema.Types.ObjectId,
         required: true
     }
 })

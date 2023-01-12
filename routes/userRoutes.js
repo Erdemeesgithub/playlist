@@ -10,7 +10,7 @@ const router = express.Router();
 
 router
   .post("/login", loginUser)
-  .get("/users/:id", getUser)
+  .get("/user/:id", getUser)
   .put("/users/:id", () => {})
   .delete("/users/:id", () => {})
   .post("/users", createUser)

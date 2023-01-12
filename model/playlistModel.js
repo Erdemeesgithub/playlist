@@ -10,8 +10,8 @@ const playlistSchema = new Schema({
     default: "",
   },
   user: {
+    // type: Schema.Types.ObjectId,
     type: String,
-    type: Schema.Types.ObjectId,
     required: true,
     ref: "User",
   },
