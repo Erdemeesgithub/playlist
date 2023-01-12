@@ -19,10 +19,10 @@ const playlistSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  // isPrivate: {
-  //   type: Boolean,
-  //   default: false,
-  // },
+  playlistId:{
+   type:String,
+   required: true
+  },
   songs: [
     {
       type: Schema.Types.ObjectId,

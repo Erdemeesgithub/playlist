@@ -16,7 +16,17 @@ const userSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         required: true
-    }
+    },
+    firsbaseId: {
+        type: String,
+        required: true
+    },
+    playlist: [
+        {
+          type: String,
+          ref: "Playlist",
+        },
+      ],
 })
 
 const User = model("User", userSchema)
