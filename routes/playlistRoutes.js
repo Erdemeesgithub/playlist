@@ -4,7 +4,8 @@ const {
   getPlaylist,
   deletePlaylist,
   getPlaylists,
-  updatePlaylist
+  updatePlaylist,
+  userPlaylist
 } = require("../controller/playlistController");
 
 const router = express.Router();
@@ -14,6 +15,7 @@ router
   .get("/playlist/:id", getPlaylist)
   .post("/playlists", createPlaylist)
   .put("/playlist/:id", updatePlaylist)
-  .delete("/playlist/:id", deletePlaylist);
+  .delete("/playlist/:id", deletePlaylist)
+  .get("/playlist/:id", userPlaylist)
 
 exports.playlistRoutes = router;

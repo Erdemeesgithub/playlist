@@ -8,12 +8,19 @@ exports.createPlaylist = async (req, res) => {
 
 exports.getPlaylists = async (req, res) => {
   const data = await Playlist.find({}).populate("songs");
+  // const userId = req.user;
+  // console.log(userId);
   res.send(data);
 };
-exports.getPlaylist = async( req,res) => {
+exports.getPlaylist = async (req, res) => {
   const playlistId = req.params.id;
   const data = await Playlist.findById(playlistId).populate("songs");
   res.send(data);
+};
+exports.userPlaylist = async(req,res) => {
+  const userId = req.user
+  const data = await Playlist.find(userId).populate("songs")
+  res.send(data)
 }
 exports.deletePlaylist = async (req, res) => {
   const id = req.params.id;
@@ -31,5 +38,3 @@ exports.updatePlaylist = async (req, res) => {
 //   const songId = req.params.id;
 //   const playlist = await Playlist.findById;
 // };
-
-
