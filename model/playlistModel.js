@@ -10,7 +10,6 @@ const playlistSchema = new Schema({
     default: "",
   },
   user: {
-    // type: Schema.Types.ObjectId,
     type: String,
     required: true,
     ref: "User",
@@ -19,10 +18,10 @@ const playlistSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  playlistId:{
-   type:String,
-   required: true
-  },
+  // playlistId:{
+  //  type:String,
+  //  required: true
+  // },
   songs: [
     {
       type: Schema.Types.ObjectId,

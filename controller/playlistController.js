@@ -7,17 +7,13 @@ exports.createPlaylist = async (req, res) => {
 };
 
 exports.getPlaylists = async (req, res) => {
-  const uid = req.query;
-  if (uid) {
-    const ress = await Playlist.find({ description: uid.uid });
-    res.send(ress);
-    return;
-  }
-  const result = await Playlist.find({});
-  res.send(result);
+  const data = await Playlist.find({}).populate("songs");
+  res.send(data);
 };
 exports.getPlaylist = async( req,res) => {
-  const result = await Playlist.findById(req.params.id.populate("songs"))
+  const playlistId = req.params.id;
+  const data = await Playlist.findById(playlistId).populate("songs");
+  res.send(data);
 }
 exports.deletePlaylist = async (req, res) => {
   const id = req.params.id;
@@ -30,13 +26,10 @@ exports.updatePlaylist = async (req, res) => {
   const result = await Playlist.findByIdAndUpdate(id, body);
   res.send("updated ");
 };
-exports.addtoplaylist = async (req, res) => {
-  const playlistId = req.params.id;
-  const songId = req.body.id;
+// exports.addToPlaylist = async (req, res) => {
+//   const playlistId = req.query.playlistId;
+//   const songId = req.params.id;
+//   const playlist = await Playlist.findById;
+// };
 
-  const playlist = await Playlist.findById(playlistId);
-  playlist.songs.push(songId);
 
-  await playlist.save();
-  res.send(playlist);
-};
