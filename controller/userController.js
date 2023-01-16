@@ -19,14 +19,23 @@ const loginUser = async (req, res) => {
   }
 };
 
-const getUsers = async (_req, res) => {
+const getUser = async (req, res) => {
+  const playlistId = req.query.playlistId;
+
+  if (playlistId) {
+    const result = await User.find({ playlistId });
+    res.send(result);
+    return;
+  }
+
   const result = await User.find({});
   res.send(result);
 };
-
-const getUser = async (req, res) => {
-  const result = await User.findById(req.params.id);
-  res.send(result);
+ 
+const deleteUser = async (req, res) => {
+  const _id = req.params.id;
+  await User.deleteOne({ _id });
+  res.send("deleted");
 };
 
-module.exports = { createUser, getUsers, getUser, loginUser };
+module.exports = { createUser, getUser, loginUser, deleteUser };

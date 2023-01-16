@@ -13,14 +13,6 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now(),
     },
-    userId: {
-        type: Schema.Types.ObjectId,
-        required: true
-    },
-    firsbaseId: {
-        type: String,
-        required: true
-    },
     playlist: [
         {
           type: String,
