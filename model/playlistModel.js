@@ -9,10 +9,9 @@ const playlistSchema = new Schema({
     type: String,
     default: "",
   },
-  user: {
+  fbId: {
     type: String,
     required: true,
-    ref: "User",
   },
   createdAt: {
     type: Date,

@@ -7,21 +7,25 @@ exports.createPlaylist = async (req, res) => {
 };
 
 exports.getPlaylists = async (req, res) => {
-  const data = await Playlist.find({}).populate("songs");
-  // const userId = req.user;
-  // console.log(userId);
+  const uid = req.query.userId;
+  if (uid) {
+    console.log(uid)
+  const { fbId } = req.query;
+  const data = await Playlist.find({ fbId }).populate("songs");
   res.send(data);
+  }
+  res.sendStatus(404);
 };
 exports.getPlaylist = async (req, res) => {
   const playlistId = req.params.id;
   const data = await Playlist.findById(playlistId).populate("songs");
   res.send(data);
 };
-exports.userPlaylist = async(req,res) => {
-  const userId = req.user
-  const data = await Playlist.find(userId).populate("songs")
-  res.send(data)
-}
+exports.userPlaylist = async (req, res) => {
+  const userId = req.user;
+  const data = await Playlist.find(userId).populate("songs");
+  res.send(data);
+};
 exports.deletePlaylist = async (req, res) => {
   const id = req.params.id;
   const result = await Playlist.deleteOne({ _id: id });
